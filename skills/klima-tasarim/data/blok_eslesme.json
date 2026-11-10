@@ -1,0 +1,15 @@
+{
+  "_aciklama": "Blok kütüphanesindeki blok adlarını ünite tiplerine eşler (varsayılan: '2020_VRS Blokları' içindeki LG LATS blokları). Boş bırakılan tipler için dahili basit bloklar çizilir. Kütüphane blokları otomatik ölçeklenir: blok sınır kutusunun uzun kenarı '_gercek_genislik_m' değerine oturtulur ve kutu merkezi ünite merkezine konur; kütüphanenin mm/cm olması ve blok baz noktası önemli değildir. 'du_vrf_buyuk', DÜ kapasitesi '_du_buyuk_kw' değerini aşınca kullanılır.",
+  "duvar": "LATS_IDU_WALL_MOUNTED_SJ",
+  "kaset4": "LATS_IDU_4way_cassete_TP_TM_TN",
+  "kaset1": "LATS_IDU_1way_cassete_TU",
+  "kanal": "LATS_IDU_MIDDLE_STATIC_M3",
+  "salon": "LATS_IDU_ceiling_floor_ceiling_VE",
+  "du_vrf": "LATS_ODU_multiv_mini_U4",
+  "du_vrf_buyuk": "LATS_ODU_MULTIV_SUPER5_UXB",
+  "du_split": "",
+  "ybranch": "",
+  "_du_buyuk_kw": 28.0,
+  "_gercek_genislik_m": {"duvar": 0.9, "kaset4": 0.95, "kaset1": 1.1, "kanal": 1.2, "salon": 1.3,
+                         "du_vrf": 0.95, "du_vrf_buyuk": 1.24, "du_split": 0.85, "ybranch": 0.3}
+}

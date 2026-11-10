@@ -1,0 +1,24 @@
+{
+  "_aciklama": "Katman ve blok adlarını kategorilere eşleyen anahtar kelimeler. Türkçe karakterler normalize edilir (İ->I, Ş->S, Ğ->G, Ü->U, Ö->O, Ç->C) ve büyük harfe çevrilir. Sıra önemlidir: ilk eşleşen kategori kazanır. Proje bazında proje.json içindeki 'katman_duzeltme' ile ezilebilir.",
+  "sira": ["yok_say", "klima", "pencere", "kapi", "kolon", "kiris", "merdiven", "yol", "parsel", "mobilya", "duvar"],
+  "kategoriler": {
+    "yok_say": ["OLCU", "DIM", "AKS", "AXIS", "GRID", "TARAMA", "HATCH", "KOT", "PAFTA", "ANTET", "CERCEVE", "FRAME", "DEFPOINTS", "VIEWPORT", "VPORT", "NOT", "NOTE", "SEMBOL", "KESIT", "SECTION", "ELEVATION", "GORUNUS", "DETAY", "DETL", "상세", "ARMATUR", "AYDINLATMA", "TOPO", "BOLT","CELIK MAKAS", "ELEKTRIK", "ELECTRIC"],
+    "klima": ["KLIMA", "HVAC", "VRF", "VRV", "SPLIT", "M-HVAC", "MEKANIK-KLIMA", "LATS", "COPPER", "BAKIR BORU", "REFRIGERANT"],
+    "pencere": ["PENCERE", "WINDOW", "WIN", "CAM", "DOGRAMA", "GLAZ", "VITRIN", "GIYDIRME", "CURTAIN", "SURME"],
+    "kapi": ["KAPI", "DOOR", "DR-", "A-DOOR"],
+    "kolon": ["KOLON", "COLUMN", "COL", "S-COLS", "PERDE", "BETONARME", "STRUCT", "STR-", "TASIYICI", "SHEAR"],
+    "kiris": ["KIRIS", "BEAM", "S-BEAM", "HATIL", "LINTEL", "DUSEY-KIRIS"],
+    "merdiven": ["MERDIVEN", "STAIR", "ASANSOR", "ELEVATOR", "LIFT", "RAMPA", "RAMP", "BASAMAK"],
+    "yol": ["YOL", "ROAD", "KALDIRIM", "OTOPARK", "PARKING", "REFUJ", "ASFALT", "PISTI", "ADA-YOL", "POMPA", "KANOPI", "CANOPY", "PRKG", "BORDUR", "BARIYER"],
+    "parsel": ["PARSEL", "IMAR", "CEKME", "SINIR", "PLOT", "PROPERTY", "KADASTRO", "ADA", "ADAKENAR"],
+    "mobilya": ["MOBILYA", "TEFRIS", "FURN", "VITRIFIYE", "ESYA", "SANITER", "MUTFAK-DOLAP", "DOLAP", "BITKI", "PLANT", "ARAC", "CAR", "INSAN", "PEOPLE"],
+    "duvar": ["DUVAR", "WALL", "BIMS", "TUGLA", "GAZBETON", "YTONG", "ALCIPAN", "BOLME", "A-WALL", "MIMARI", "ARCH", "A-"]
+  },
+  "blok_anahtar": {
+    "pencere": ["PENCERE", "WINDOW", "WIN", "PNC", "CAM", "SURME"],
+    "kapi": ["KAPI", "DOOR", "DR", "KP"],
+    "kolon": ["KOLON", "COLUMN", "COL"],
+    "merdiven": ["MERDIVEN", "STAIR", "ASANSOR", "ELEVATOR"],
+    "mobilya": ["YATAK", "BED", "KANEPE", "SOFA", "MASA", "TABLE", "SANDALYE", "CHAIR", "KLOZET", "WC", "LAVABO", "DUS", "SHOWER", "KUVET", "BATH", "EVYE", "SINK", "OCAK", "BUZDOLABI", "DOLAP", "ARAC", "CAR", "AGAC", "TREE"]
+  }
+}

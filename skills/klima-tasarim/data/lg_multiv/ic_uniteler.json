@@ -1,0 +1,12 @@
+{
+  "_dogrulanmali": true,
+  "_not": "LG Multi V iç ünite nominal soğutma kapasiteleri (kW). Model kodları örnek niteliğindedir, katalogdan doğrulanmalı.",
+  "tipler": {
+    "duvar":  {"ad": "Duvar tipi (Art Cool / Standart)", "kw": [1.6, 2.2, 2.8, 3.6, 4.5, 5.6, 7.1], "model_onek": "ARNU-SJ", "genislik_m": {"2.8": 0.84, "5.6": 0.9, "7.1": 1.1}, "derinlik_m": 0.25},
+    "kaset4": {"ad": "4 yön kaset", "kw": [2.8, 3.6, 4.5, 5.6, 7.1, 8.2, 10.6, 12.3, 14.1, 15.8], "model_onek": "ARNU-TL/TM", "genislik_m": {"5.6": 0.62, "15.8": 0.95}, "derinlik_m": null},
+    "kaset1": {"ad": "1 yön kaset", "kw": [1.6, 2.2, 2.8, 3.6, 4.5, 5.6, 7.1], "model_onek": "ARNU-TU", "genislik_m": {"7.1": 1.2}, "derinlik_m": 0.45},
+    "kanal":  {"ad": "Kanallı (orta statik)", "kw": [1.6, 2.2, 2.8, 3.6, 4.5, 5.6, 7.1, 8.2, 10.6, 12.3, 14.1, 15.8, 22.4, 28.0], "model_onek": "ARNU-M3/L3", "genislik_m": {"7.1": 0.9, "15.8": 1.2, "28.0": 1.5}, "derinlik_m": 0.7},
+    "salon":  {"ad": "Salon tipi / tavan-döşeme", "kw": [5.6, 7.1, 10.6, 12.3, 14.1, 15.8], "model_onek": "ARNU-VE/CE", "genislik_m": {"15.8": 1.6}, "derinlik_m": 0.3}
+  },
+  "split_btu_kw": {"7000": 2.1, "9000": 2.6, "12000": 3.5, "15000": 4.4, "18000": 5.3, "24000": 7.0, "28000": 8.2, "36000": 10.6, "44000": 12.9, "48000": 14.1}
+}

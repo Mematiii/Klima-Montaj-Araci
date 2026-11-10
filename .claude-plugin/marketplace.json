@@ -1,0 +1,11 @@
+{
+  "name": "klima-tasarim",
+  "owner": {"name": "Mematiii"},
+  "plugins": [
+    {
+      "name": "klima-tasarim",
+      "source": "./",
+      "description": "Kat planından klima yerleşimi, borulama ve verim hesabı (LG Multi V / split)."
+    }
+  ]
+}

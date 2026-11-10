@@ -1,0 +1,9 @@
+{
+  "aciklama": "Bakır boru havşa boyları (mm) ve sıkma torkları (kg.m)",
+  "tablo": [
+    {"mm": 6.35,  "inch": "1/4", "havsa_max": 1.3, "havsa_min": 0.7, "tork": 1.6, "ek_tork": 2.0},
+    {"mm": 9.52,  "inch": "3/8", "havsa_max": 1.6, "havsa_min": 1.0, "tork": 3.0, "ek_tork": 3.5},
+    {"mm": 12.7,  "inch": "1/2", "havsa_max": 1.8, "havsa_min": 1.0, "tork": 5.0, "ek_tork": 5.5},
+    {"mm": 15.88, "inch": "5/8", "havsa_max": 2.4, "havsa_min": 2.2, "tork": 7.5, "ek_tork": 8.0}
+  ]
+}

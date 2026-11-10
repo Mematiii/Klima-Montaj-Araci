@@ -1,0 +1,57 @@
+{
+  "_dogrulanmali": true,
+  "_not": "Ön değerler: herkese açık LG Multi V 5 / Multi V S bilgileri ve sektör ortalamalarından derlendi. LG katalog/PDB verileriniz geldiğinde model kodları, kapasiteler ve fabrika gaz miktarları güncellenmeli. 'fiyat_endeksi' göreli maliyet sıralaması içindir, gerçek fiyat değildir.",
+  "sogutucu": "R410A",
+  "seriler": {
+    "multi_v_s": {
+      "ad": "LG Multi V S (mini VRF)",
+      "kombinasyon_min": 0.5,
+      "kombinasyon_max": 1.3,
+      "max_ic_unite": {"12.1": 6, "14.0": 7, "15.5": 9, "22.4": 13, "28.0": 16},
+      "modeller": [
+        {"model": "ARUN040GSS0", "hp": 4, "kw": 12.1, "fabrika_gaz_kg": 3.0, "fiyat_endeksi": 40},
+        {"model": "ARUN050GSS0", "hp": 5, "kw": 14.0, "fabrika_gaz_kg": 3.0, "fiyat_endeksi": 45},
+        {"model": "ARUN060GSS0", "hp": 6, "kw": 15.5, "fabrika_gaz_kg": 3.0, "fiyat_endeksi": 50},
+        {"model": "ARUN080GSS0", "hp": 8, "kw": 22.4, "fabrika_gaz_kg": 4.5, "fiyat_endeksi": 65},
+        {"model": "ARUN100GSS0", "hp": 10, "kw": 28.0, "fabrika_gaz_kg": 5.0, "fiyat_endeksi": 75}
+      ]
+    },
+    "multi_v_5": {
+      "ad": "LG Multi V 5",
+      "kombinasyon_min": 0.5,
+      "kombinasyon_max": 1.3,
+      "max_ic_unite": {"22.4": 13, "28.0": 16, "33.6": 20, "39.2": 23, "44.8": 26, "50.4": 29, "56.0": 32, "61.6": 35, "67.2": 39, "72.8": 42, "78.4": 45, "84.0": 49, "89.6": 52, "95.2": 55, "100.8": 58},
+      "modeller": [
+        {"model": "ARUM080LTE5", "hp": 8,  "kw": 22.4, "fabrika_gaz_kg": 6.5,  "fiyat_endeksi": 80},
+        {"model": "ARUM100LTE5", "hp": 10, "kw": 28.0, "fabrika_gaz_kg": 6.5,  "fiyat_endeksi": 92},
+        {"model": "ARUM120LTE5", "hp": 12, "kw": 33.6, "fabrika_gaz_kg": 7.5,  "fiyat_endeksi": 105},
+        {"model": "ARUM140LTE5", "hp": 14, "kw": 39.2, "fabrika_gaz_kg": 7.5,  "fiyat_endeksi": 118},
+        {"model": "ARUM160LTE5", "hp": 16, "kw": 44.8, "fabrika_gaz_kg": 9.0,  "fiyat_endeksi": 130},
+        {"model": "ARUM180LTE5", "hp": 18, "kw": 50.4, "fabrika_gaz_kg": 9.0,  "fiyat_endeksi": 145},
+        {"model": "ARUM200LTE5", "hp": 20, "kw": 56.0, "fabrika_gaz_kg": 9.0,  "fiyat_endeksi": 158},
+        {"model": "ARUM220LTE5", "hp": 22, "kw": 61.6, "fabrika_gaz_kg": 9.0,  "fiyat_endeksi": 170},
+        {"model": "ARUM240LTE5", "hp": 24, "kw": 67.2, "fabrika_gaz_kg": 9.0,  "fiyat_endeksi": 182},
+        {"model": "ARUM260LTE5", "hp": 26, "kw": 72.8, "fabrika_gaz_kg": 13.0, "fiyat_endeksi": 200},
+        {"model": "ARUM280LTE5", "hp": 28, "kw": 78.4, "fabrika_gaz_kg": 13.0, "fiyat_endeksi": 212},
+        {"model": "ARUM300LTE5", "hp": 30, "kw": 84.0, "fabrika_gaz_kg": 13.0, "fiyat_endeksi": 224},
+        {"model": "ARUM320LTE5", "hp": 32, "kw": 89.6, "fabrika_gaz_kg": 15.5, "fiyat_endeksi": 238},
+        {"model": "ARUM340LTE5", "hp": 34, "kw": 95.2, "fabrika_gaz_kg": 15.5, "fiyat_endeksi": 250},
+        {"model": "ARUM360LTE5", "hp": 36, "kw": 100.8, "fabrika_gaz_kg": 15.5, "fiyat_endeksi": 262}
+      ]
+    },
+    "multi_f": {
+      "ad": "LG Multi F (multi-split)",
+      "kombinasyon_min": 0.5,
+      "kombinasyon_max": 1.3,
+      "max_ic_unite": {"5.3": 2, "6.2": 3, "7.0": 3, "7.9": 4, "8.8": 4, "10.6": 5},
+      "modeller": [
+        {"model": "MU2R17", "hp": 2,   "kw": 5.3,  "fabrika_gaz_kg": 1.4, "fiyat_endeksi": 18},
+        {"model": "MU3R21", "hp": 2.5, "kw": 6.2,  "fabrika_gaz_kg": 1.9, "fiyat_endeksi": 22},
+        {"model": "MU3R19", "hp": 2.5, "kw": 7.0,  "fabrika_gaz_kg": 1.9, "fiyat_endeksi": 24},
+        {"model": "MU4R25", "hp": 3,   "kw": 7.9,  "fabrika_gaz_kg": 2.3, "fiyat_endeksi": 27},
+        {"model": "MU4R27", "hp": 3,   "kw": 8.8,  "fabrika_gaz_kg": 2.3, "fiyat_endeksi": 30},
+        {"model": "MU5R30", "hp": 4,   "kw": 10.6, "fabrika_gaz_kg": 2.7, "fiyat_endeksi": 35}
+      ]
+    }
+  }
+}

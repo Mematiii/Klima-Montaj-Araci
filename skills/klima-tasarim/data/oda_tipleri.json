@@ -1,0 +1,257 @@
+{
+  "_aciklama": "Oda adı anahtar kelimeleri -> oda tipi. 'klima': klima konur mu, 'kisi': m2 başına ya da sabit kişi, 'tercih_tip': önerilen iç ünite tipi, 'du_aday': dış ünite konabilir alan mı. 'yuk_carpani': alan × bölge katsayısına uygulanan kullanım çarpanı (yoksa 1.0 = konut). Ticari değerler örnek projelerdeki mevcut LG/BEKO tasarımlarına göre ayarlandı; proje geneli için 'ayar yuk_carpani=..', oda için 'oda_ayarlari.Ox.yuk_carpani' ile ezilir.",
+  "tipler": {
+    "salon": {
+      "anahtar": [
+        "SALON",
+        "OTURMA",
+        "YASAM",
+        "LIVING",
+        "MISAFIR"
+      ],
+      "klima": true,
+      "kisi": 4,
+      "tercih_tip": "duvar"
+    },
+    "yatak": {
+      "anahtar": [
+        "YATAK",
+        "Y.ODA",
+        "Y. ODA",
+        "EBEVEYN",
+        "BEDROOM",
+        "COCUK",
+        "GENC",
+        "ODA"
+      ],
+      "klima": true,
+      "kisi": 2,
+      "tercih_tip": "duvar"
+    },
+    "mutfak": {
+      "anahtar": [
+        "MUTFAK",
+        "KITCHEN",
+        "MUT."
+      ],
+      "klima": true,
+      "kisi": 1,
+      "tercih_tip": "duvar",
+      "not": "Ocak üstüne ve buzdolabı yanına konmaz"
+    },
+    "calisma": {
+      "anahtar": [
+        "CALISMA",
+        "OFIS",
+        "OFFICE",
+        "BURO",
+        "MUDUR",
+        "YONETICI",
+        "SEF",
+        "MUHASEBE",
+        "DINLENME",
+        "DINL.",
+        "PERSONEL ODA",
+        "SEKRETER",
+        "SEKRETERYA",
+        "IDARI"
+      ],
+      "klima": true,
+      "kisi": 2,
+      "tercih_tip": "duvar",
+      "yuk_carpani": 1.3
+    },
+    "toplanti": {
+      "anahtar": [
+        "TOPLANTI",
+        "MEETING",
+        "KONFERANS"
+      ],
+      "klima": true,
+      "kisi_m2": 2.5,
+      "tercih_tip": "kaset4",
+      "yuk_carpani": 1.3
+    },
+    "magaza": {
+      "anahtar": [
+        "MAGAZA",
+        "DUKKAN",
+        "SATIS",
+        "MARKET",
+        "SHOP",
+        "STORE",
+        "TEZGAH",
+        "KASA",
+        "TICARI",
+        "SHOWROOM"
+      ],
+      "klima": true,
+      "kisi_m2": 6,
+      "tercih_tip": "kaset4",
+      "yuk_carpani": 1.35
+    },
+    "kafe": {
+      "anahtar": [
+        "KAFE",
+        "CAFE",
+        "RESTORAN",
+        "RESTAURANT",
+        "YEMEKHANE",
+        "KAFETERYA",
+        "BUFE"
+      ],
+      "klima": true,
+      "kisi_m2": 2,
+      "tercih_tip": "kaset4",
+      "yuk_carpani": 1.4
+    },
+    "ortak": {
+      "anahtar": [
+        "LOBI",
+        "LOBBY",
+        "BEKLEME",
+        "RESEPSIYON",
+        "ORTAK ALAN",
+        "FUAYE",
+        "GIRIS HOLU",
+        "KARSILAMA",
+        "DANISMA",
+        "MESCIT"
+      ],
+      "klima": true,
+      "kisi_m2": 8,
+      "tercih_tip": "kaset4",
+      "yuk_carpani": 1.2
+    },
+    "hol": {
+      "anahtar": [
+        "HOL",
+        "ANTRE",
+        "KORIDOR",
+        "CORRIDOR",
+        "HALL",
+        "GIRIS",
+        "SAHANLIK",
+        "KAT HOLU"
+      ],
+      "klima": false,
+      "kisi": 0
+    },
+    "islak": {
+      "anahtar": [
+        "BANYO",
+        "WC",
+        "TUVALET",
+        "LAVABO",
+        "DUS",
+        "BATH",
+        "TOILET",
+        "ISLAK",
+        "MESCIT ABDEST",
+        "CAMASIR",
+        "BEBEK UNITESI",
+        "ENGELLI",
+        "PISUAR"
+      ],
+      "klima": false,
+      "kisi": 0,
+      "oncelik": 20
+    },
+    "depo": {
+      "anahtar": [
+        "DEPO",
+        "KILER",
+        "STORAGE",
+        "ARSIV",
+        "TEKNIK",
+        "MEKANIK",
+        "SAFT",
+        "SHAFT",
+        "KAZAN",
+        "ELEKTRIK",
+        "PANO",
+        "JENERATOR",
+        "SIGINAK"
+      ],
+      "klima": false,
+      "kisi": 0,
+      "oncelik": 5
+    },
+    "giyinme": {
+      "anahtar": [
+        "GIYINME",
+        "VESTIYER",
+        "DRESS",
+        "SOYUNMA",
+        "PER.SOY",
+        "SOY."
+      ],
+      "klima": false,
+      "kisi": 0
+    },
+    "merdiven": {
+      "anahtar": [
+        "MERDIVEN",
+        "MERD.",
+        "MERD HOL",
+        "ASANSOR",
+        "STAIR",
+        "ELEVATOR"
+      ],
+      "klima": false,
+      "kisi": 0
+    },
+    "balkon": {
+      "anahtar": [
+        "BALKON",
+        "BALCONY",
+        "LOGGIA",
+        "VERANDA"
+      ],
+      "klima": false,
+      "kisi": 0,
+      "du_aday": true
+    },
+    "teras": {
+      "anahtar": [
+        "TERAS",
+        "TERRACE",
+        "CATI",
+        "ROOF"
+      ],
+      "klima": false,
+      "kisi": 0,
+      "du_aday": true
+    },
+    "dis_alan": {
+      "anahtar": [
+        "BAHCE",
+        "GARDEN",
+        "YESIL",
+        "PEYZAJ",
+        "AVLU",
+        "BOS ALAN",
+        "SERVIS ALANI",
+        "ARKA BAHCE"
+      ],
+      "klima": false,
+      "kisi": 0,
+      "du_aday": true
+    },
+    "yol": {
+      "anahtar": [
+        "YOL",
+        "CADDE",
+        "SOKAK",
+        "OTOPARK",
+        "KALDIRIM",
+        "POMPA ADASI",
+        "ROAD",
+        "PARK"
+      ],
+      "klima": false,
+      "kisi": 0,
+      "du_yasak": true
+    }
+  }
+}

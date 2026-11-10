@@ -1,0 +1,13 @@
+{
+  "aciklama": "Gerekli BTU = (Oda m2 x Bolge katsayisi) + (Kisi sayisi x 600)",
+  "kisi_basina_btu": 600,
+  "bolgeler": {
+    "akdeniz": {"ad": "Akdeniz Bölgesi", "katsayi": 445},
+    "guneydogu": {"ad": "Güneydoğu Anadolu", "katsayi": 462},
+    "ege": {"ad": "Ege Bölgesi", "katsayi": 423},
+    "marmara": {"ad": "Marmara / Karadeniz", "katsayi": 385},
+    "karadeniz": {"ad": "Marmara / Karadeniz", "katsayi": 385},
+    "ic_anadolu": {"ad": "İç Anadolu Bölgesi", "katsayi": 346},
+    "dogu_anadolu": {"ad": "Doğu Anadolu Bölgesi", "katsayi": 308}
+  }
+}

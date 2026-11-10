@@ -1,0 +1,79 @@
+{
+  "_dogrulanmali": true,
+  "_not": "LG Multi V borulama tabloları ve limitleri için ön değerler. LG kurulum kılavuzu/PDB ile doğrulanmalı. 'genel' profili, ekran görüntüsündeki üreticiden bağımsız VRF aracının limitleridir.",
+  "ana_hat_dis_uniteye_gore": [
+    {"max_kw": 15.5,  "sivi": 9.52,  "gaz": 15.88},
+    {"max_kw": 22.4,  "sivi": 9.52,  "gaz": 19.05},
+    {"max_kw": 28.0,  "sivi": 9.52,  "gaz": 22.2},
+    {"max_kw": 44.8,  "sivi": 12.7,  "gaz": 28.58},
+    {"max_kw": 61.6,  "sivi": 15.88, "gaz": 28.58},
+    {"max_kw": 67.2,  "sivi": 15.88, "gaz": 34.9},
+    {"max_kw": 95.2,  "sivi": 19.05, "gaz": 34.9},
+    {"max_kw": 999,   "sivi": 19.05, "gaz": 41.3}
+  ],
+  "ana_hat_buyutme": {"esdeger_uzunluk_esigi_m": 90, "aciklama": "Eşdeğer uzunluk eşiği aşılırsa ana hat gaz borusu bir çap büyütülür"},
+  "brans_hat_alt_yuke_gore": [
+    {"max_kw": 5.6,   "sivi": 6.35,  "gaz": 12.7},
+    {"max_kw": 16.0,  "sivi": 9.52,  "gaz": 15.88},
+    {"max_kw": 22.4,  "sivi": 9.52,  "gaz": 19.05},
+    {"max_kw": 33.6,  "sivi": 9.52,  "gaz": 22.2},
+    {"max_kw": 50.4,  "sivi": 12.7,  "gaz": 28.58},
+    {"max_kw": 67.2,  "sivi": 15.88, "gaz": 28.58},
+    {"max_kw": 72.8,  "sivi": 15.88, "gaz": 34.9},
+    {"max_kw": 100.8, "sivi": 19.05, "gaz": 34.9},
+    {"max_kw": 999,   "sivi": 19.05, "gaz": 41.3}
+  ],
+  "ic_unite_baglanti": [
+    {"max_kw": 5.6,  "sivi": 6.35, "gaz": 12.7},
+    {"max_kw": 16.0, "sivi": 9.52, "gaz": 15.88},
+    {"max_kw": 22.4, "sivi": 9.52, "gaz": 19.05},
+    {"max_kw": 999,  "sivi": 9.52, "gaz": 22.2}
+  ],
+  "y_branch": [
+    {"max_kw": 33.6,  "model": "ARBLN01621"},
+    {"max_kw": 72.8,  "model": "ARBLN03321"},
+    {"max_kw": 145.6, "model": "ARBLN07121"},
+    {"max_kw": 999,   "model": "ARBLN14521"}
+  ],
+  "ilave_gaz_kg_m": {"6.35": 0.022, "9.52": 0.059, "12.7": 0.12, "15.88": 0.18, "19.05": 0.27, "22.2": 0.35, "25.4": 0.52, "28.58": 0.68},
+  "dirsek_esdeger_m": {"12.7": 0.2, "15.88": 0.25, "19.05": 0.35, "22.2": 0.4, "28.58": 0.5, "34.9": 0.7, "41.3": 0.8},
+  "y_branch_esdeger_m": 0.5,
+  "header_esdeger_m": 1.0,
+  "kapasite_duzeltme": {
+    "_aciklama": "Soğutma kapasitesi düzeltme katsayısı ~ eşdeğer uzunluk. Katalogdaki eğri ile değiştirilmeli. Lineer: k = 1 - egim*(Leq - referans), alt sınır min.",
+    "referans_m": 7.5,
+    "egim_1_m": 0.0011,
+    "yukseklik_egim_1_m": 0.0008,
+    "min": 0.75
+  },
+  "profiller": {
+    "lg_multiv": {
+      "toplam_boru_m": {"mini": 300, "buyuk": 1000},
+      "en_uzak_gercek_m": 150,
+      "en_uzak_esdeger_m": 175,
+      "ilk_bransmandan_en_uzaga_m": 40,
+      "brans_arasi_min_m": 0.5,
+      "brans_sonrasi_max_m": 40,
+      "yukseklik_du_iu_m": 50,
+      "yukseklik_iu_iu_m": 15
+    },
+    "genel": {
+      "toplam_boru_m": {"mini": 300, "buyuk": 1000},
+      "en_uzak_gercek_m": 100,
+      "en_uzak_esdeger_m": 120,
+      "ilk_bransmana_kadar_m": 70,
+      "brans_arasi_min_m": 1.0,
+      "brans_arasi_max_m": 90,
+      "brans_sonrasi_max_m": 40,
+      "yukseklik_du_iu_m": 40,
+      "yukseklik_iu_iu_m": 15
+    },
+    "multi_f": {
+      "toplam_boru_m": {"mini": 50, "buyuk": 75},
+      "tek_hat_max_m": 25,
+      "yukseklik_du_iu_m": 15,
+      "yukseklik_iu_iu_m": 7.5
+    }
+  },
+  "mini_vrf_esigi_kw": 28.0
+}

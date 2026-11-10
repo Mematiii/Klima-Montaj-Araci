@@ -1,0 +1,8 @@
+{
+  "name": "klima-tasarim",
+  "version": "0.1.0",
+  "description": "DWG/DXF kat planından klima (VRF/LG Multi V, multi-split, split) yerleşimi, borulama, boru çapı/verim hesabı, DWG çıktısı, rapor ve teklif.",
+  "author": {"name": "Mematiii"},
+  "keywords": ["klima", "hvac", "vrf", "dwg", "borulama", "lg-multi-v"],
+  "license": "MIT"
+}

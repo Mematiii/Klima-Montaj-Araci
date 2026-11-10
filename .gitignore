@@ -1,0 +1,16 @@
+# Müşteri dosyaları ve katalog PDF'leri repoya girmez
+*.dwg
+*.dxf
+*.bak
+*.pdf
+!tests/**/*.dxf
+klima_*/
+**/proje.json
+data/fiyatlar.json
+skills/klima-tasarim/data/fiyatlar.json
+__pycache__/
+*.pyc
+.pytest_cache/
+
+ablok_*/
+

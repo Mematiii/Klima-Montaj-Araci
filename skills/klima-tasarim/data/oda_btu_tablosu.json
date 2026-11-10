@@ -1,0 +1,10 @@
+{
+  "aciklama": "Pratik oda büyüklüğüne göre önerilen klima kapasitesi (kontrol amaçlı)",
+  "tablo": [
+    {"min_m2": 0, "max_m2": 18, "btu": 9000},
+    {"min_m2": 18, "max_m2": 26, "btu": 12000},
+    {"min_m2": 26, "max_m2": 40, "btu": 18000},
+    {"min_m2": 40, "max_m2": 52, "btu": 24000}
+  ],
+  "standart_split_btu": [7000, 9000, 12000, 15000, 18000, 24000, 28000, 36000, 44000, 48000]
+}

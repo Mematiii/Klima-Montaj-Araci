@@ -1,0 +1,23 @@
+{
+  "aciklama": "Split / multi-split: klima BTU'suna göre basma (sıvı) ve emme (gaz) hattı boru çapı. 12000 ve 24000 için iki seçenekli değerlerde büyük olan kullanılır, alternatif not edilir.",
+  "inch_mm": {"1/4": 6.35, "3/8": 9.52, "1/2": 12.7, "5/8": 15.88, "3/4": 19.05},
+  "tablo": [
+    {"btu": 7000,  "sivi": "1/4", "gaz": "3/8"},
+    {"btu": 9000,  "sivi": "1/4", "gaz": "3/8"},
+    {"btu": 12000, "sivi": "1/4", "gaz": "1/2", "alternatif_gaz": "3/8"},
+    {"btu": 15000, "sivi": "1/4", "gaz": "1/2"},
+    {"btu": 18000, "sivi": "1/4", "gaz": "1/2"},
+    {"btu": 24000, "sivi": "3/8", "gaz": "5/8", "alternatif_sivi": "1/4"},
+    {"btu": 28000, "sivi": "3/8", "gaz": "5/8"},
+    {"btu": 44000, "sivi": "1/2", "gaz": "3/4"}
+  ],
+  "limitler": {
+    "_dogrulanmali": true,
+    "aciklama": "Tipik duvar tipi split limitleri, model kataloğundan doğrulanmalı",
+    "max_boru_m": {"9000": 15, "12000": 15, "18000": 20, "24000": 25, "36000": 30, "48000": 50},
+    "max_yukseklik_m": {"9000": 7, "12000": 7, "18000": 10, "24000": 10, "36000": 15, "48000": 30},
+    "fabrika_dolum_m": 5,
+    "min_boru_m": 3,
+    "ilave_gaz_kg_m": {"6.35": 0.020, "9.52": 0.030}
+  }
+}
