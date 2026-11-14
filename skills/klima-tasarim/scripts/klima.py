@@ -184,7 +184,8 @@ def cmd_dis(a):
     for g in s["sistemler"]:
         sat.append(f"{g['id']} ({g['tip']}) iç üniteler: {', '.join(g['ic'])}")
         for i, ad in enumerate(g.get("adaylar", [])):
-            sat.append(f"    aday {i + 1}: {ad['tur']:<7} konum {ad['konum']} tahmini boru ~{ad.get('tahmini_boru_m')} m")
+            not_ = f" | {'; '.join(ad['notlar'])}" if ad.get("notlar") else ""
+            sat.append(f"    aday {i + 1}: {ad['tur']:<7} konum {ad['konum']} tahmini boru ~{ad.get('tahmini_boru_m')} m{not_}")
     _yazdir("Dış ünite adayları", sat)
     _yazdir("Uyarılar", s["uyarilar"] or ["(yok)"])
     print(f"\nÖnizleme: {png}")

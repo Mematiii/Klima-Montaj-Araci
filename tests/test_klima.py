@@ -142,6 +142,49 @@ def test_kaset_kolon_onune_konmaz():
     assert not any(b["engel"] == "kolon" for b in bos3)
 
 
+def _du_analiz(kabuk, pencere=()):
+    return {"bina_kabugu": kabuk, "odalar": [{"id": "O1", "tip": "salon", "poligon": kabuk}],
+            "engeller": {"kapi": [], "merdiven": [], "pencere": [list(p) for p in pencere]},
+            "dis_alanlar": [], "parsel": None}
+
+
+def test_du_pencere_onune_konmaz():
+    import dis_unite_yerlestir as du
+    kabuk = [[0, 0], [10, 0], [10, 8], [0, 8]]
+    pen = [[3, -0.1], [5, -0.1], [5, 0.1], [3, 0.1]]           # güney cephede 2 m pencere
+    ad = du.aday_noktalar(_du_analiz(kabuk, [pen]), du.DU_OLCU["split"], tip="split")
+    guney = [a for a in ad if a["konum"][1] < 0]
+    assert guney and all(a["pencere_m"] >= du.PENCERE_YASAK_M for a in guney)
+    assert not any(2.6 < a["konum"][0] < 5.4 for a in guney)    # pencerenin önü boş
+    yakin = [a for a in guney if a["pencere_m"] < du.PENCERE_TERCIH_M]
+    assert yakin and all(a["ek_ceza"] > 0 and any("pencere" in n for n in a["notlar"]) for a in yakin)
+
+
+def test_du_nis_ve_servis_boslugu():
+    import dis_unite_yerlestir as du
+    # U biçimli bina: kuzeyde 2 m genişliğinde, 4 m derinliğinde avlu (niş)
+    kabuk = [[0, 0], [10, 0], [10, 8], [6.0, 8], [6.0, 4], [4.0, 4], [4.0, 8], [0, 8]]
+    ad = du.aday_noktalar(_du_analiz(kabuk), du.DU_OLCU["vrf"], tip="vrf")
+    avlu = [a for a in ad if 4.0 < a["konum"][0] < 6.0 and 4 < a["konum"][1] < 8]
+    assert avlu and all(a["ek_ceza"] >= 6 for a in avlu)
+    assert all(any("niş" in n or "engel" in n for n in a["notlar"]) for a in avlu)
+    # 1 m ön boşluğu sığmayan yerde VRF adayı olmamalı (avlu yan duvarlarına bakan adaylar)
+    for a in avlu:
+        if abs(a["aci"]) < 1 or abs(abs(a["aci"]) - 180) < 1:  # doğu/batı bakan
+            assert False, "2 m avluda karşı duvara bakan VRF için ön boşluk yok"
+    dis = [a for a in ad if a["konum"][1] < 0]
+    assert dis and min(a["ek_ceza"] for a in dis) == 0
+
+
+def test_vrf_cephe_cezasi():
+    import dis_unite_yerlestir as du
+    assert du.vrf_cephe_cezasi("split", 30) == 0
+    assert du.vrf_cephe_cezasi("vrf", 28) > du.vrf_cephe_cezasi("vrf", 12) >= du.VRF_CEPHE_CEZA_M
+    a = {"baglanti": [0, 0], "tur": "cephe"}
+    b = {"baglanti": [0, 0], "tur": "teras"}
+    assert du._puanla(a, [[5, 0]], None, "vrf", 28) - du._puanla(b, [[5, 0]], None, "vrf", 28) > 15
+
+
 def test_uctan_uca(tmp_path):
     import ornek_plan_olustur
     dxf = ornek_plan_olustur.olustur(str(tmp_path / "ornek.dxf"))

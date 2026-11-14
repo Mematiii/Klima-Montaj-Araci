@@ -18,6 +18,8 @@
 | Çıktıda eski kasetler hâlâ görünüyor | Eski blokların iç çizgileri `LATS_CASSETE` gibi başka katmanlarda | Eski klima katmanları kapatılır **ve dondurulur** (freeze); blok tümüyle gizlenir |
 | "KAPAT (3 yön)" uyarısı / kaset kolonun önünde | 4 yön kasetin bir üfleme yönünde 1,5 m içinde kolon ya da 0,7 m içinde duvar var | Önce üniteyi `elle_konum` ile kaydır; olmuyorsa o yönün kanadını kapat (3 yön). Küçük odada kaçınılmazsa duvar tipi ya da 1 yön kaset düşün |
 | Kaset/boru oda ortasında görünmeyen bir "duvardan" kaçıyor | Duvar sayılan katmandaki (ör. `ÖLÇÜ`) tek ölçü/not çizgisi odanın içine yarık açmış | Katmanı tümden çıkaramıyorsan (bölmeler de oradaysa) `ayarlar.duvar_haric` ile çizginin olduğu kutuyu işaretle, `analiz` tekrar |
+| "VRF dış ünitesi cepheye konsolla öneriliyor" uyarısı | Planda balkon/teras/bahçe adayı yok | Çatı ya da zeminde yer varsa `elle_konum.S1` + `du_kot_m` ile ver; cephe kalacaksa taşıyıcı ve izin kontrol |
+| DÜ adayı yok ya da hep uzak bir yerde | Ön servis boşluğu sığmıyor, pencereler çok yakın ya da cephe niş/avlu | `dis` çıktısındaki aday notlarına bak; gerekirse `elle_konum` |
 | Boru merdivenin üstünden geçiyor | Merdiven çizgileri duvar katmanında | `ayarlar.yasak_bolgeler` ile merdiven boşluğunu kapat |
 | Boru binanın dışından dolaşıyor | Dış hücreler ucuz | Varsayılan `dis_cephe_carpan` 4; yine de oluyorsa iç güzergah duvar/kolonla kapalıdır, önizlemeye bak |
 | Çizim adası tüm vaziyeti kapsıyor | Topoğrafya/yol çizgileri planları birbirine bağlıyor | Adalar mimari katmanlardan kurulur; yine de olmazsa `analiz --bbox x0 y0 x1 y1` |

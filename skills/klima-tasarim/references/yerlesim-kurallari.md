@@ -39,7 +39,12 @@ Koridor/hol ile ortak duvarın iç yüzüne, asma tavan içine konur. Menfez ve 
 ## Dış ünite
 Adaylar: balkon/teras iç kenarları, bina dış kabuğu (cephe konsolu), "BAHÇE/BOŞ ALAN" metinleri.
 **Yasaklar:** kapıya < 1,5 m (balkonda 1,0 m, kaçış yolu), merdivene < 1 m, yol poligonu + 0,5 m ve "YOL/CADDE" metnine < 3 m, parsel dışı, iç mekan.
-**Puan:** Manhattan MST tahmini boru + tür cezası (balkon 0, teras 0, bahçe 2 m, cephe 5 m). `du_tercih` ayarı seçilen türe −10 m avantaj verir.
+**Servis/hava boşluğu** (`DU_BOSLUK`, doğrulanmalı): VRF ön 1,0 / arka 0,3 / yan 0,3 m; multi ön 0,6 / arka 0,15 / yan 0,3 m; split ön 0,5 / arka 0,15 / yan 0,3 m. Ön boşluk bina kütlesine, iç mekana, merdivene ya da yola çarpıyorsa aday elenir; yan boşluk dar ise +3 m ceza.
+**Pencere:** ünite pencereye 0,3 m'den yakınsa (önünde/altında) elenir; 1,5 m'ye kadar yakınlık cezalı ((1,5 − mesafe) × 6 m). Planda pencere ayırt edilemiyorsa uyarı verilir.
+**Sıcak hava sıkışması (cephe):** ön yüzden ±75° ışınlar atılır. Tam karşıdaki bina kütlesi 2 m'den yakınsa (2 − mesafe) × 5 m ceza; ışınların yarısından fazlası 3 m içinde kütleye çarpıyorsa (niş/avlu) +6 m ceza.
+**Büyük VRF cephede:** VRF için cephe adayına +10 m, 14 kW üstü her kW için +0,5 m ek ceza (100–300 kg konsol, taşıyıcı, izin). Yine de cephe seçilirse uyarı verilir; çatı/zemin `elle_konum` ile verilmeli.
+**Puan:** Manhattan MST tahmini boru + tür cezası (balkon 0, teras 0, bahçe 2 m, cephe 5 m) + yukarıdaki cezalar + kapıya < 4 m ise 5 m. `du_tercih` ayarı seçilen türe −10 m avantaj verir. Adayların cezalı olduğu nedenler `dis` çıktısında aday satırında yazılır.
+**Bilinmeyenler:** kapalı hol/fabrika içi (plan dışı), komşu bina pencereleri, gürültü yönetmeliği, güneş/yön, defrost suyu gideri, vinç ve erişim. Kullanıcıya sorulmalı.
 Kesin seçim borulama sonrası maliyetle yapılır (`optimize.py`).
 
 ## Sahada kullanıcıya sorulacaklar (plandan okunamaz)
