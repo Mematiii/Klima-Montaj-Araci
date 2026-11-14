@@ -26,6 +26,13 @@ Bir odada birden fazla ünite varsa aralarında en az `max(2,5 m, uzun_kenar/(n+
 ## İç ünite: 4 yön kaset
 Oda, uzun ekseni boyunca n eşit hücreye bölünür ve ünite hücre merkezine konur. Duvara en az (genişlik/2 + 0,6 m), kirişe en az 0,3 m mesafe aranır (spiral arama, en fazla 3 m).
 
+**Üfleme yönü engeli:** Kaset dört kenarından düz üfler. Her yönde, panel genişliğindeki üfleme bandında panel kenarından ilk engele boşluk ölçülür (çaprazdaki kolonlar sayılmaz).
+- Kolon: en az **1,5 m**. Daha yakın kolon havayı kırıp aşağı çevirir (cereyan) ve o yönün atışı boşa gider.
+- Duvar: tercihen 1,0 m; **0,7 m** altı kabul edilmez.
+- İki kaset merkezi arası tercihen 3 m.
+
+Arama, hedeften kayma + engel cezası + kasetler arası yakınlık toplamını en aza indiren noktayı seçer. Kaçılamayan yön raporda "KAPAT (3 yön)" olarak çıkar: o yönün kanadı kapatılır ya da ünite elle kaydırılır. Elle konulan kasetler de aynı kontrolden geçer ve uyarı verir. Eşikler `ic_unite_yerlestir.py` başındaki `KASET_*` sabitleridir; LG montaj kılavuzundaki engel boşluğuyla teyit edilmeli.
+
 ## İç ünite: kanallı
 Koridor/hol ile ortak duvarın iç yüzüne, asma tavan içine konur. Menfez ve kanal projesi bu aracın kapsamında değildir; raporda belirtilir.
 

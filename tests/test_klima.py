@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 
 import pytest
+from shapely.geometry import Polygon
 
 KOK = Path(__file__).resolve().parent.parent
 SCR = KOK / "skills" / "klima-tasarim" / "scripts"
@@ -120,6 +121,25 @@ def test_kaldirim_halkasi_duvar_sayilmaz():
     kalan, ayiklanan = oda_bul.cevre_halkasi_ayikla(duvar)
     assert len(ayiklanan) == 1 and ayiklanan[0] is halka
     assert len(kalan) == len(duvar) - 1  # gerçek dış duvar korunur
+
+
+def test_kaset_kolon_onune_konmaz():
+    """Odanın ortasındaki kolon, 4 yön kasetin hiçbir üfleme yönünün 1,5 m içinde kalmamalı."""
+    import ic_unite_yerlestir as iu
+    oda = {"id": "O1", "poligon": [[0, 0], [10, 0], [10, 8], [0, 8]]}
+    kolon = [[5.6, 3.8], [6.0, 3.8], [6.0, 4.2], [5.6, 4.2]]   # merkezin hemen sağında
+    eng = {"kiris": [], "kolon": [kolon], "pencere": [], "kapi": []}
+    k = iu.kaset_konumlari(oda, 1, 0.95, eng)[0]
+    bos = iu.kaset_yon_bosluklari(k["konum"], 0.95, Polygon(oda["poligon"]), [Polygon(kolon)])
+    assert all(b["bosluk"] >= iu.KASET_KOLON_M for b in bos if b["engel"] == "kolon")
+    assert not k["kapali_yonler"]
+    # kolonun tam önündeki bir konum yakalanmalı (3 yön önerisi)
+    bos2 = iu.kaset_yon_bosluklari((4.8, 4.0), 0.95, Polygon(oda["poligon"]), [Polygon(kolon)])
+    kapali = iu.kaset_kapali_yonler(bos2)
+    assert [b["yon"] for b in kapali] == ["sağ (+x)"] and kapali[0]["engel"] == "kolon"
+    # çapraz kolon üfleme bandında değildir
+    bos3 = iu.kaset_yon_bosluklari((4.0, 2.0), 0.95, Polygon(oda["poligon"]), [Polygon(kolon)])
+    assert not any(b["engel"] == "kolon" for b in bos3)
 
 
 def test_uctan_uca(tmp_path):

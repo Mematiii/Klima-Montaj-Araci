@@ -16,6 +16,7 @@
 | Hiç oda yok, oda yazıları var | Duvarlar alışılmadık katmanda (ör. bir Revit çıktısında bölmeler `3`, oda sınırları `alan` poligonu) | Bölgedeki katmanları uzunluğa göre listele; `katman_duzeltme` ile `duvar` yap. Revit çıktılarında `alan`/`area` poligonları doğrudan oda sınırıdır |
 | Oda adı "T", "Ç.Ö: 370x370", "VESTİYER" | Termostat/difüzör/mobilya yazısı oda adı sanılmış | 3 harften kısa yazılar atlanır; kalanı `oda_ayarlari.Ox.ad/tip_ad` ile düzelt |
 | Çıktıda eski kasetler hâlâ görünüyor | Eski blokların iç çizgileri `LATS_CASSETE` gibi başka katmanlarda | Eski klima katmanları kapatılır **ve dondurulur** (freeze); blok tümüyle gizlenir |
+| "KAPAT (3 yön)" uyarısı / kaset kolonun önünde | 4 yön kasetin bir üfleme yönünde 1,5 m içinde kolon ya da 0,7 m içinde duvar var | Önce üniteyi `elle_konum` ile kaydır; olmuyorsa o yönün kanadını kapat (3 yön). Küçük odada kaçınılmazsa duvar tipi ya da 1 yön kaset düşün |
 | Boru merdivenin üstünden geçiyor | Merdiven çizgileri duvar katmanında | `ayarlar.yasak_bolgeler` ile merdiven boşluğunu kapat |
 | Boru binanın dışından dolaşıyor | Dış hücreler ucuz | Varsayılan `dis_cephe_carpan` 4; yine de oluyorsa iç güzergah duvar/kolonla kapalıdır, önizlemeye bak |
 | Çizim adası tüm vaziyeti kapsıyor | Topoğrafya/yol çizgileri planları birbirine bağlıyor | Adalar mimari katmanlardan kurulur; yine de olmazsa `analiz --bbox x0 y0 x1 y1` |

@@ -126,10 +126,74 @@ def duvar_adaylari(oda: dict, gen: float, der: float, engeller: dict, kabuk: Pol
     return adaylar
 
 
+# 4 yön kaset dört kenarından düz üfler. Bir üfleme ağzının önündeki kolon havayı kırar ve aşağı
+# çevirir (altındaki kişiye cereyan, o yönün atışı boşa); duvar ise atışı kısaltır.
+# Üretici kılavuzlarındaki engel boşluğu genelde 1-1,5 m; LG katalog değeriyle teyit edilmeli.
+KASET_KOLON_M = 1.5   # üfleme yönünde kolona en az boşluk (panel kenarından)
+KASET_DUVAR_M = 1.0   # üfleme yönünde duvara tercih edilen boşluk
+KASET_KAPAT_DUVAR_M = 0.7  # bunun altında o yön kapatılmalı (3 yön çalıştır)
+KASET_ARASI_M = 3.0   # iki kaset merkezi arası tercih edilen en az mesafe
+_YON_AD = {0: "sağ (+x)", 90: "üst (+y)", 180: "sol (-x)", 270: "alt (-y)"}
+
+
+def kaset_yon_bosluklari(merkez, gen: float, P: Polygon, kolonlar: list, aci: float = 0.0,
+                         maks: float = 4.0) -> list[dict]:
+    """Kasetin 4 üfleme yönünde panel kenarından ilk engele (kolon ya da oda sınırı) boşluk.
+    Üfleme bandı panel genişliği kadardır; çaprazdaki engeller sayılmaz."""
+    x, y = merkez
+    sinir = [P.exterior] + list(P.interiors)
+    sonuc = []
+    for d0 in (0, 90, 180, 270):
+        a = math.radians(aci + d0)
+        u = (math.cos(a), math.sin(a))
+        v = (-u[1], u[0])
+        h = gen / 2
+        kenar = LineString([(x + u[0] * h + v[0] * h, y + u[1] * h + v[1] * h),
+                            (x + u[0] * h - v[0] * h, y + u[1] * h - v[1] * h)])
+        bant = Polygon([(x + u[0] * h + s * v[0] * h + t * u[0] * maks, y + u[1] * h + s * v[1] * h + t * u[1] * maks)
+                        for s, t in ((1, 0), (-1, 0), (-1, 1), (1, 1))])
+        en, tur = maks, None
+        for k in kolonlar:
+            if k.intersects(bant):
+                dk = kenar.distance(k.intersection(bant))
+                if dk < en:
+                    en, tur = dk, "kolon"
+        for s in sinir:
+            kes = LineString(s.coords).intersection(bant)
+            if not kes.is_empty:
+                dk = kenar.distance(kes)
+                if dk < en - 0.05:  # kolon duvarla aynı hizadaysa kolon say
+                    en, tur = dk, "duvar"
+        sonuc.append({"yon": _YON_AD[d0], "bosluk": round(en, 2), "engel": tur})
+    return sonuc
+
+
+def kaset_cezasi(bosluklar: list[dict]) -> float:
+    c = 0.0
+    for b in bosluklar:
+        if b["engel"] == "kolon":
+            c += max(0.0, KASET_KOLON_M - b["bosluk"]) * 4.0
+        elif b["engel"] == "duvar":
+            c += max(0.0, KASET_DUVAR_M - b["bosluk"]) * 2.0
+    return c
+
+
+def kaset_kapali_yonler(bosluklar: list[dict]) -> list[dict]:
+    """Kapatılması (3 yön çalıştırılması) önerilen üfleme yönleri."""
+    return [b for b in bosluklar
+            if (b["engel"] == "kolon" and b["bosluk"] < KASET_KOLON_M)
+            or (b["engel"] == "duvar" and b["bosluk"] < KASET_KAPAT_DUVAR_M)]
+
+
+def _kapali_metin(kapali: list[dict]) -> str:
+    return ", ".join(f"{b['yon']} yönü {b['engel']}a {b['bosluk']:.2f} m" for b in kapali)
+
+
 def kaset_konumlari(oda: dict, n: int, gen: float, engeller: dict) -> list[dict]:
     P = Polygon(oda["poligon"])
     uzun, kisa, eksen = _ana_eksen(P)
     kirisler = [Polygon(p) for p in engeller["kiris"] if Polygon(p).distance(P) < 1]
+    kolonlar = [Polygon(p) for p in engeller.get("kolon", []) if len(p) >= 3 and Polygon(p).distance(P) < 4]
     ic_bolge = P.buffer(-(gen / 2 + 0.6))
     if ic_bolge.is_empty:
         ic_bolge = P.buffer(-gen / 2)
@@ -138,25 +202,37 @@ def kaset_konumlari(oda: dict, n: int, gen: float, engeller: dict) -> list[dict]
     for i in range(n):
         off = (i + 0.5) / n - 0.5
         hedef = (c.x + eksen[0] * off * uzun, c.y + eksen[1] * off * uzun)
-        en_iyi = None
+        # maliyet = hedeften kayma + üfleme yönü engel cezası + diğer kasetlere yakınlık
+        en_iyi, en_mal, en_bos = None, 1e9, None
         for r in [x * 0.2 for x in range(0, 15)]:
+            if r > en_mal:
+                break  # daha uzak halkalar daha ucuz olamaz
             for k in range(max(1, int(r * 20))):
                 aci = 2 * math.pi * k / max(1, int(r * 20))
                 q = Point(hedef[0] + r * math.cos(aci), hedef[1] + r * math.sin(aci))
                 kare = q.buffer(gen / 2, cap_style=3)
                 if not ic_bolge.contains(q) or any(kare.distance(b) < 0.3 for b in kirisler):
                     continue
-                en_iyi = q
-                break
-            if en_iyi:
-                break
+                bos = kaset_yon_bosluklari((q.x, q.y), gen, P, kolonlar)
+                mal = r + kaset_cezasi(bos)
+                mal += sum(max(0.0, KASET_ARASI_M - math.dist((q.x, q.y), o["konum"])) * 3.0 for o in out)
+                if mal < en_mal - 1e-9:
+                    en_iyi, en_mal, en_bos = q, mal, bos
         if en_iyi is None:
             en_iyi = P.representative_point()
+            en_bos = kaset_yon_bosluklari((en_iyi.x, en_iyi.y), gen, P, kolonlar)
         kare = en_iyi.buffer(gen / 2, cap_style=3)
+        kapali = kaset_kapali_yonler(en_bos)
+        gerekce = "oda hücre merkezi, kiriş ve duvardan uzak"
+        if kapali:
+            gerekce += f"; KAPAT (3 yön): {_kapali_metin(kapali)}"
+        elif any(b["engel"] == "kolon" and b["bosluk"] < 3 for b in en_bos):
+            gerekce += "; üfleme yönleri kolondan açık"
         out.append({"konum": [round(en_iyi.x, 3), round(en_iyi.y, 3)], "aci": 0.0,
                     "poligon": [[round(x, 3), round(y, 3)] for x, y in kare.exterior.coords[:-1]],
-                    "baglanti": [round(en_iyi.x, 3), round(en_iyi.y, 3)], "skor": 0,
-                    "gerekce": "oda hücre merkezi, kiriş ve duvardan uzak"})
+                    "baglanti": [round(en_iyi.x, 3), round(en_iyi.y, 3)], "skor": round(en_mal, 2),
+                    "gerekce": gerekce, "yon_bosluklari": en_bos,
+                    "kapali_yonler": [b["yon"] for b in kapali]})
     return out
 
 
@@ -237,6 +313,17 @@ def yerlestir(analiz: dict, yuk: dict, plan: dict, elle: dict | None = None) -> 
                 kayit["aci"] = e.get("aci", kayit["aci"])
                 kayit["poligon"] = e.get("poligon", [])
                 kayit["gerekce"] = "kullanıcı konumu"
+                if tip == "kaset4":
+                    P_oda = Polygon(oda["poligon"])
+                    kolonlar = [Polygon(p) for p in analiz["engeller"].get("kolon", [])
+                                if len(p) >= 3 and Polygon(p).distance(P_oda) < 4]
+                    bos = kaset_yon_bosluklari(e["konum"], gen, P_oda, kolonlar, e.get("aci", 0.0))
+                    kayit["yon_bosluklari"] = bos
+                    kayit["kapali_yonler"] = [b["yon"] for b in kaset_kapali_yonler(bos)]
+            if tip == "kaset4" and kayit.get("kapali_yonler"):
+                kapali = [b for b in kayit["yon_bosluklari"] if b["yon"] in kayit["kapali_yonler"]]
+                uyarilar.append(f"{u['id']} {oda['ad']} (4 yön kaset): {_kapali_metin(kapali)}. "
+                                f"Bu yönlerin kanadını kapatın (3/2 yön çalıştırın) ya da üniteyi kaydırın.")
             kayit["alternatifler"] = [{"konum": a["konum"], "aci": a["aci"], "skor": a["skor"], "gerekce": a["gerekce"]}
                                       for a in alternatifler]
             sonuc.append(kayit)
