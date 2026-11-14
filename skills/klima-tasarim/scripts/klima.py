@@ -105,7 +105,8 @@ def cmd_analiz(a):
         bbox = plan["adalar"][0]["bbox"]
     if bbox:
         bbox = [bbox[0] - 3, bbox[1] - 3, bbox[2] + 3, bbox[3] + 3]
-    sonuc = oda_bul.odalari_bul(plan, bbox, kapama_r=float(p.ayar.get("kapi_kapama_m", 0.55)))
+    sonuc = oda_bul.odalari_bul(plan, bbox, kapama_r=float(p.ayar.get("kapi_kapama_m", 0.55)),
+                                duvar_haric=p.ayar.get("duvar_haric"))
     # kullanıcı oda düzeltmeleri (ad/tip) bu adımda görünür olsun
     for o in sonuc["odalar"]:
         d = p.d.get("oda_ayarlari", {}).get(o["id"], {})

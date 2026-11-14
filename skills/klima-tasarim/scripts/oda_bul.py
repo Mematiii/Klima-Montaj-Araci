@@ -128,9 +128,29 @@ def _klima_yazisi(m: dict) -> bool:
 _ALAN_RE = re.compile(r"(\d+[.,]?\d*)\s*(M2|M²|M\^2)", re.I)
 
 
-def odalari_bul(plan: dict, bbox=None, kapama_r: float = 0.55, min_oda_m2: float = 1.5, kabuk_r: float = 2.6) -> dict:
+def duvar_haric_uygula(duvar: list, kutular: list | None) -> list:
+    """Kullanıcının işaretlediği kutuların içindeki duvar çizgilerini çıkarır (ör. duvar katmanına
+    çizilmiş ölçü/not çizgisi oda içinde sahte duvar oluşturuyorsa). Kutu: [x0, y0, x1, y1] metre."""
+    if not kutular:
+        return duvar
+    from shapely.geometry import box
+    maske = unary_union([box(*k) for k in kutular])
+    kalan = []
+    for g in duvar:
+        if not g.intersects(maske):
+            kalan.append(g)
+            continue
+        f = g.difference(maske)
+        if not f.is_empty:
+            kalan.extend(getattr(f, "geoms", [f]))
+    return kalan
+
+
+def odalari_bul(plan: dict, bbox=None, kapama_r: float = 0.55, min_oda_m2: float = 1.5, kabuk_r: float = 2.6,
+                duvar_haric: list | None = None) -> dict:
     acik_kenarli = []
     duvar = _geom_listesi(plan, ["duvar", "kolon"], bbox)
+    duvar = duvar_haric_uygula(duvar, duvar_haric)
     duvar, halkalar = cevre_halkasi_ayikla(duvar)
     pencere = _nesne_poligonlari(plan, "pencere", bbox) + [g.buffer(0.02) for g in _geom_listesi(plan, ["pencere"], bbox)]
     kapi = _nesne_poligonlari(plan, "kapi", bbox)

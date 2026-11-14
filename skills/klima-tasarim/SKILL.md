@@ -47,6 +47,7 @@ Kullanıcıdan/müşteriden gelen istekleri sor ve `proje.json` dosyasına yaz:
   - `yuk_carpani`: boş (varsayılan, oda tipine göre) | sayı (tüm odalara uygulanır, ör. 1.0 = çarpansız)
   - `mevcut_klima_gizle`: evet (varsayılan; plandaki eski klima katmanları çıktıda kapatılır) | hayir
   - `yasak_bolgeler` (proje.json → ayarlar): `[[x0, y0, x1, y1], ...]` metre; borunun asla geçmeyeceği alanlar. Merdiven çizgileri duvar katmanındaysa merdiven boşluğunu buraya yaz (önizlemede hattın merdivenden geçtiğini görürsen).
+  - `duvar_haric` (proje.json → ayarlar): `[[x0, y0, x1, y1], ...]` metre; bu kutulardaki duvar çizgileri yok sayılır. Duvar katmanına çizilmiş ölçü/not çizgisi oda içinde sahte duvar oluşturuyorsa kullan, sonra `analiz` tekrar.
 - DÜ aday numaraları her çalıştırmada değişebilir; kullanıcı belirli bir yeri seçtiyse `du_aday_secimi` yerine o adayın koordinatlarını `elle_konum`a yaz.
 - Üst katlarda VRF DÜ'yü cepheye konsolla asmak yerine çatıyı öner: `elle_konum.S1 = {"konum": [x, y], "baglanti": [x, y]}` (düşey hattın geçeceği köşe, ör. depo/arşiv) ve `ayar du_kot_m=<kat yüksekliği>`. Çizimde DÜ yazısı "ÇATIDA" olarak çıkar.
   - `limit_profili`: lg_multiv (varsayılan) | genel
